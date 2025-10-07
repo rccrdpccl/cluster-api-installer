@@ -1,10 +1,2 @@
-aws:
-  encodedCredentials: ""
-  iamRole: ""
-rosa:
-  ocmToken: ""
-manager:
-  cmd: /bin/cluster-api-provider-aws-controller-manager
-  image:
-    tag: v4.20
-    url: registry.redhat.io/openshift4/ose-aws-cluster-api-controllers-rhel9
+global:
+  deployOnOCP: true

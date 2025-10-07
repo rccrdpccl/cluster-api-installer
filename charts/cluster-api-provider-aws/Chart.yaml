@@ -1,6 +1,6 @@
 apiVersion: v2
 name: cluster-api-provider-aws
-description: Cluster API provider for AWS
+description: Helm chart for cluster-api-provider-aws
 type: application
-version: "4.20"
-appVersion: "4.20"
+version: '4.20'
+appVersion: '4.20'

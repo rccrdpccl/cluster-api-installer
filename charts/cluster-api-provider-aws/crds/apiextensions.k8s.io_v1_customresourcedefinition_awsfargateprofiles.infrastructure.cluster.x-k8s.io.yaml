@@ -1,3 +1,6 @@
+# Resource: apiextensions.k8s.io_v1_customresourcedefinition_awsfargateprofiles.infrastructure.cluster.x-k8s.io
+---
+{{- if .Values.global.deployOnOCP }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -58,7 +61,8 @@ spec:
           metadata:
             type: object
           spec:
-            description: FargateProfileSpec defines the desired state of FargateProfile.
+            description: FargateProfileSpec defines the desired state of
+              FargateProfile.
             properties:
               additionalTags:
                 additionalProperties:
@@ -68,8 +72,8 @@ spec:
                   ones added by default.
                 type: object
               clusterName:
-                description: ClusterName is the name of the Cluster this object belongs
-                  to.
+                description: ClusterName is the name of the Cluster this object
+                  belongs to.
                 minLength: 1
                 type: string
               profileName:
@@ -111,13 +115,14 @@ spec:
             - clusterName
             type: object
           status:
-            description: FargateProfileStatus defines the observed state of FargateProfile.
+            description: FargateProfileStatus defines the observed state of
+              FargateProfile.
             properties:
               conditions:
                 description: Conditions defines current state of the Fargate profile.
                 items:
-                  description: Condition defines an observation of a Cluster API resource
-                    operational state.
+                  description: Condition defines an observation of a Cluster API
+                    resource operational state.
                   properties:
                     lastTransitionTime:
                       description: |-
@@ -149,7 +154,8 @@ spec:
                       maxLength: 32
                       type: string
                     status:
-                      description: status of the condition, one of True, False, Unknown.
+                      description: status of the condition, one of True, False,
+                        Unknown.
                       type: string
                     type:
                       description: |-
@@ -251,7 +257,8 @@ spec:
           metadata:
             type: object
           spec:
-            description: FargateProfileSpec defines the desired state of FargateProfile.
+            description: FargateProfileSpec defines the desired state of
+              FargateProfile.
             properties:
               additionalTags:
                 additionalProperties:
@@ -261,8 +268,8 @@ spec:
                   ones added by default.
                 type: object
               clusterName:
-                description: ClusterName is the name of the Cluster this object belongs
-                  to.
+                description: ClusterName is the name of the Cluster this object
+                  belongs to.
                 minLength: 1
                 type: string
               profileName:
@@ -328,13 +335,14 @@ spec:
             - clusterName
             type: object
           status:
-            description: FargateProfileStatus defines the observed state of FargateProfile.
+            description: FargateProfileStatus defines the observed state of
+              FargateProfile.
             properties:
               conditions:
                 description: Conditions defines current state of the Fargate profile.
                 items:
-                  description: Condition defines an observation of a Cluster API resource
-                    operational state.
+                  description: Condition defines an observation of a Cluster API
+                    resource operational state.
                   properties:
                     lastTransitionTime:
                       description: |-
@@ -366,7 +374,8 @@ spec:
                       maxLength: 32
                       type: string
                     status:
-                      description: status of the condition, one of True, False, Unknown.
+                      description: status of the condition, one of True, False,
+                        Unknown.
                       type: string
                     type:
                       description: |-
@@ -432,3 +441,5 @@ spec:
     storage: true
     subresources:
       status: {}
+
+{{- end }}

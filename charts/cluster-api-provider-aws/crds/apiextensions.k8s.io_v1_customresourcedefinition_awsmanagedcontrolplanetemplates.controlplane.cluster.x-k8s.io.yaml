@@ -1,9 +1,12 @@
+# Resource: apiextensions.k8s.io_v1_customresourcedefinition_awsmanagedcontrolplanetemplates.controlplane.cluster.x-k8s.io
+---
+{{- if .Values.global.deployOnOCP }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.17.3
-    service.beta.openshift.io/inject-cabundle: "true"
+    service.beta.openshift.io/inject-cabundle: 'true'
   labels:
     cluster.x-k8s.io/provider: infrastructure-aws
     cluster.x-k8s.io/v1alpha3: v1alpha3
@@ -26,8 +29,8 @@ spec:
   - name: v1beta2
     schema:
       openAPIV3Schema:
-        description: AWSManagedControlPlaneTemplate is the Schema for the AWSManagedControlPlaneTemplates
-          API.
+        description: AWSManagedControlPlaneTemplate is the Schema for the
+          AWSManagedControlPlaneTemplates API.
         properties:
           apiVersion:
             description: |-
@@ -66,8 +69,8 @@ spec:
                           ones added by default.
                         type: object
                       addons:
-                        description: Addons defines the EKS addons to enable with
-                          the EKS cluster.
+                        description: Addons defines the EKS addons to enable with the
+                          EKS cluster.
                         items:
                           description: Addon represents a EKS addon.
                           properties:
@@ -89,12 +92,11 @@ spec:
                               minLength: 2
                               type: string
                             serviceAccountRoleARN:
-                              description: ServiceAccountRoleArn is the ARN of an
-                                IAM role to bind to the addons service account
+                              description: ServiceAccountRoleArn is the ARN of an IAM
+                                role to bind to the addons service account
                               type: string
                             version:
-                              description: Version is the version of the addon to
-                                use
+                              description: Version is the version of the addon to use
                               type: string
                           required:
                           - name
@@ -108,8 +110,8 @@ spec:
                           provider for the controller for use with IAM roles for service accounts
                         type: boolean
                       bastion:
-                        description: Bastion contains options to configure the bastion
-                          host.
+                        description: Bastion contains options to configure the
+                          bastion host.
                         properties:
                           allowedCIDRBlocks:
                             description: |-
@@ -157,8 +159,8 @@ spec:
                             maxLength: 512
                             type: string
                           port:
-                            description: port is the port on which the API server
-                              is serving.
+                            description: port is the port on which the API server is
+                              serving.
                             format: int32
                             type: integer
                         required:
@@ -172,15 +174,16 @@ spec:
                           based on the namespace and name of the managed control plane.
                         type: string
                       encryptionConfig:
-                        description: EncryptionConfig specifies the encryption configuration
-                          for the cluster
+                        description: EncryptionConfig specifies the encryption
+                          configuration for the cluster
                         properties:
                           provider:
                             description: Provider specifies the ARN or alias of the
                               CMK (in AWS KMS)
                             type: string
                           resources:
-                            description: Resources specifies the resources to be encrypted
+                            description: Resources specifies the resources to be
+                              encrypted
                             items:
                               type: string
                             type: array
@@ -194,12 +197,12 @@ spec:
                               access to the private endpoint
                             type: boolean
                           public:
-                            description: Public controls whether control plane endpoints
-                              are publicly accessible
+                            description: Public controls whether control plane
+                              endpoints are publicly accessible
                             type: boolean
                           publicCIDRs:
-                            description: PublicCIDRs specifies which blocks can access
-                              the public endpoint
+                            description: PublicCIDRs specifies which blocks can
+                              access the public endpoint
                             items:
                               type: string
                             type: array
@@ -223,8 +226,8 @@ spec:
                                     type: string
                                   type: array
                                 rolearn:
-                                  description: RoleARN is the AWS ARN for the role
-                                    to map
+                                  description: RoleARN is the AWS ARN for the role to
+                                    map
                                   minLength: 31
                                   type: string
                                 username:
@@ -250,8 +253,8 @@ spec:
                                     type: string
                                   type: array
                                 userarn:
-                                  description: UserARN is the AWS ARN for the user
-                                    to map
+                                  description: UserARN is the AWS ARN for the user to
+                                    map
                                   minLength: 31
                                   type: string
                                 username:
@@ -314,8 +317,8 @@ spec:
                           cluster machines unless a machine specifies a different ImageLookupOrg.
                         type: string
                       kubeProxy:
-                        description: KubeProxy defines managed attributes of the kube-proxy
-                          daemonset
+                        description: KubeProxy defines managed attributes of the
+                          kube-proxy daemonset
                         properties:
                           disable:
                             default: false
@@ -344,18 +347,19 @@ spec:
                             type: boolean
                           authenticator:
                             default: false
-                            description: Authenticator indicates if the iam authenticator
-                              log should be enabled
+                            description: Authenticator indicates if the iam
+                              authenticator log should be enabled
                             type: boolean
                           controllerManager:
                             default: false
-                            description: ControllerManager indicates if the controller
-                              manager (kube-controller-manager) log should be enabled
+                            description: ControllerManager indicates if the
+                              controller manager (kube-controller-manager) log should
+                              be enabled
                             type: boolean
                           scheduler:
                             default: false
-                            description: Scheduler indicates if the Kubernetes scheduler
-                              (kube-scheduler) log should be enabled
+                            description: Scheduler indicates if the Kubernetes
+                              scheduler (kube-scheduler) log should be enabled
                             type: boolean
                         required:
                         - apiServer
@@ -378,41 +382,43 @@ spec:
                               properties:
                                 cidrBlocks:
                                   description: List of CIDR blocks to allow access
-                                    from. Cannot be specified with SourceSecurityGroupID.
+                                    from. Cannot be specified with
+                                    SourceSecurityGroupID.
                                   items:
                                     type: string
                                   type: array
                                 description:
-                                  description: Description provides extended information
-                                    about the ingress rule.
+                                  description: Description provides extended
+                                    information about the ingress rule.
                                   type: string
                                 fromPort:
                                   description: FromPort is the start of port range.
                                   format: int64
                                   type: integer
                                 ipv6CidrBlocks:
-                                  description: List of IPv6 CIDR blocks to allow access
-                                    from. Cannot be specified with SourceSecurityGroupID.
+                                  description: List of IPv6 CIDR blocks to allow
+                                    access from. Cannot be specified with
+                                    SourceSecurityGroupID.
                                   items:
                                     type: string
                                   type: array
                                 natGatewaysIPsSource:
-                                  description: NatGatewaysIPsSource use the NAT gateways
-                                    IPs as the source for the ingress rule.
+                                  description: NatGatewaysIPsSource use the NAT
+                                    gateways IPs as the source for the ingress rule.
                                   type: boolean
                                 protocol:
-                                  description: Protocol is the protocol for the ingress
-                                    rule. Accepted values are "-1" (all), "4" (IP
-                                    in IP),"tcp", "udp", "icmp", and "58" (ICMPv6),
-                                    "50" (ESP).
+                                  description: Protocol is the protocol for the
+                                    ingress rule. Accepted values are "-1" (all), "4"
+                                    (IP in IP),"tcp", "udp", "icmp", and "58"
+                                    (ICMPv6), "50" (ESP).
                                   enum:
-                                  - "-1"
-                                  - "4"
+                                  - '-1'
+                                  - '4'
                                   - tcp
                                   - udp
                                   - icmp
-                                  - "58"
-                                  - "50"
+                                  - '58'
+                                  - '50'
                                   type: string
                                 sourceSecurityGroupIds:
                                   description: The security group id to allow access
@@ -456,41 +462,43 @@ spec:
                               properties:
                                 cidrBlocks:
                                   description: List of CIDR blocks to allow access
-                                    from. Cannot be specified with SourceSecurityGroupID.
+                                    from. Cannot be specified with
+                                    SourceSecurityGroupID.
                                   items:
                                     type: string
                                   type: array
                                 description:
-                                  description: Description provides extended information
-                                    about the ingress rule.
+                                  description: Description provides extended
+                                    information about the ingress rule.
                                   type: string
                                 fromPort:
                                   description: FromPort is the start of port range.
                                   format: int64
                                   type: integer
                                 ipv6CidrBlocks:
-                                  description: List of IPv6 CIDR blocks to allow access
-                                    from. Cannot be specified with SourceSecurityGroupID.
+                                  description: List of IPv6 CIDR blocks to allow
+                                    access from. Cannot be specified with
+                                    SourceSecurityGroupID.
                                   items:
                                     type: string
                                   type: array
                                 natGatewaysIPsSource:
-                                  description: NatGatewaysIPsSource use the NAT gateways
-                                    IPs as the source for the ingress rule.
+                                  description: NatGatewaysIPsSource use the NAT
+                                    gateways IPs as the source for the ingress rule.
                                   type: boolean
                                 protocol:
-                                  description: Protocol is the protocol for the ingress
-                                    rule. Accepted values are "-1" (all), "4" (IP
-                                    in IP),"tcp", "udp", "icmp", and "58" (ICMPv6),
-                                    "50" (ESP).
+                                  description: Protocol is the protocol for the
+                                    ingress rule. Accepted values are "-1" (all), "4"
+                                    (IP in IP),"tcp", "udp", "icmp", and "58"
+                                    (ICMPv6), "50" (ESP).
                                   enum:
-                                  - "-1"
-                                  - "4"
+                                  - '-1'
+                                  - '4'
                                   - tcp
                                   - udp
                                   - icmp
-                                  - "58"
-                                  - "50"
+                                  - '58'
+                                  - '50'
                                   type: string
                                 sourceSecurityGroupIds:
                                   description: The security group id to allow access
@@ -576,8 +584,9 @@ spec:
                               description: SubnetSpec configures an AWS Subnet.
                               properties:
                                 availabilityZone:
-                                  description: AvailabilityZone defines the availability
-                                    zone to use for this subnet in the cluster's region.
+                                  description: AvailabilityZone defines the
+                                    availability zone to use for this subnet in the
+                                    cluster's region.
                                   type: string
                                 cidrBlock:
                                   description: CidrBlock is the CIDR block to be used
@@ -606,10 +615,10 @@ spec:
                                     IPv6 is only supported in managed clusters, this field cannot be set on AWSCluster object.
                                   type: boolean
                                 isPublic:
-                                  description: IsPublic defines the subnet as a public
-                                    subnet. A subnet is public when it is associated
-                                    with a route table that has a route to an internet
-                                    gateway.
+                                  description: IsPublic defines the subnet as a
+                                    public subnet. A subnet is public when it is
+                                    associated with a route table that has a route to
+                                    an internet gateway.
                                   type: boolean
                                 natGatewayId:
                                   description: |-
@@ -636,8 +645,8 @@ spec:
                                 tags:
                                   additionalProperties:
                                     type: string
-                                  description: Tags is a collection of tags describing
-                                    the resource.
+                                  description: Tags is a collection of tags
+                                    describing the resource.
                                   type: object
                                 zoneType:
                                   description: |-
@@ -741,7 +750,8 @@ spec:
                                     - none
                                     type: string
                                     x-kubernetes-validations:
-                                    - message: allowed values are 'none' and 'amazon-pool'
+                                    - message: allowed values are 'none' and
+                                        'amazon-pool'
                                       rule: self in ['none','amazon-pool']
                                 type: object
                               emptyRoutesDefaultVPCSecurityGroup:
@@ -756,12 +766,12 @@ spec:
                                   NOTE: This only applies when the VPC is managed by the Cluster API AWS controller.
                                 type: boolean
                               id:
-                                description: ID is the vpc-id of the VPC this provider
-                                  should use to create resources.
+                                description: ID is the vpc-id of the VPC this
+                                  provider should use to create resources.
                                 type: string
                               internetGatewayId:
-                                description: InternetGatewayID is the id of the internet
-                                  gateway associated with the VPC.
+                                description: InternetGatewayID is the id of the
+                                  internet gateway associated with the VPC.
                                 type: string
                               ipamPool:
                                 description: |-
@@ -796,8 +806,8 @@ spec:
                                     type: string
                                   egressOnlyInternetGatewayId:
                                     description: EgressOnlyInternetGatewayID is the
-                                      id of the egress only internet gateway associated
-                                      with an IPv6 enabled VPC.
+                                      id of the egress only internet gateway
+                                      associated with an IPv6 enabled VPC.
                                     type: string
                                   ipamPool:
                                     description: |-
@@ -887,8 +897,8 @@ spec:
                               authentication requests to the OpenID identity provider.
                             type: string
                           groupsClaim:
-                            description: The JWT claim that the provider uses to return
-                              your groups.
+                            description: The JWT claim that the provider uses to
+                              return your groups.
                             type: string
                           groupsPrefix:
                             description: |-
@@ -925,7 +935,8 @@ spec:
                           tags:
                             additionalProperties:
                               type: string
-                            description: tags to apply to oidc identity provider association
+                            description: tags to apply to oidc identity provider
+                              association
                             type: object
                           usernameClaim:
                             description: |-
@@ -1028,7 +1039,8 @@ spec:
                           is supplied then the latest version of Kubernetes that EKS supports
                           will be used.
                         minLength: 2
-                        pattern: ^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.?(\.0|[1-9][0-9]*)?$
+                        pattern:
+                          ^v?(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.?(\.0|[1-9][0-9]*)?$
                         type: string
                       vpcCni:
                         description: VpcCni is used to set configuration options for
@@ -1077,7 +1089,7 @@ spec:
                                           description: The key to select.
                                           type: string
                                         name:
-                                          default: ""
+                                          default: ''
                                           description: |-
                                             Name of the referent.
                                             This field is effectively required, but due to backwards compatibility is
@@ -1099,12 +1111,13 @@ spec:
                                         spec.nodeName, spec.serviceAccountName, status.hostIP, status.podIP, status.podIPs.
                                       properties:
                                         apiVersion:
-                                          description: Version of the schema the FieldPath
-                                            is written in terms of, defaults to "v1".
+                                          description: Version of the schema the
+                                            FieldPath is written in terms of,
+                                            defaults to "v1".
                                           type: string
                                         fieldPath:
-                                          description: Path of the field to select
-                                            in the specified API version.
+                                          description: Path of the field to select in
+                                            the specified API version.
                                           type: string
                                       required:
                                       - fieldPath
@@ -1116,17 +1129,17 @@ spec:
                                         (limits.cpu, limits.memory, limits.ephemeral-storage, requests.cpu, requests.memory and requests.ephemeral-storage) are currently supported.
                                       properties:
                                         containerName:
-                                          description: 'Container name: required for
-                                            volumes, optional for env vars'
+                                          description: 'Container name: required for volumes,
+                                            optional for env vars'
                                           type: string
                                         divisor:
                                           anyOf:
                                           - type: integer
                                           - type: string
-                                          description: Specifies the output format
-                                            of the exposed resources, defaults to
-                                            "1"
-                                          pattern: ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
+                                          description: Specifies the output format of
+                                            the exposed resources, defaults to "1"
+                                          pattern:
+                                            ^(\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))(([KMGTPE]i)|[numkMGTPE]|([eE](\+|-)?(([0-9]+(\.[0-9]*)?)|(\.[0-9]+))))?$
                                           x-kubernetes-int-or-string: true
                                         resource:
                                           description: 'Required: resource to select'
@@ -1140,11 +1153,11 @@ spec:
                                         pod's namespace
                                       properties:
                                         key:
-                                          description: The key of the secret to select
-                                            from.  Must be a valid secret key.
+                                          description: The key of the secret to
+                                            select from.  Must be a valid secret key.
                                           type: string
                                         name:
-                                          default: ""
+                                          default: ''
                                           description: |-
                                             Name of the referent.
                                             This field is effectively required, but due to backwards compatibility is
@@ -1153,8 +1166,8 @@ spec:
                                             More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
                                           type: string
                                         optional:
-                                          description: Specify whether the Secret
-                                            or its key must be defined
+                                          description: Specify whether the Secret or
+                                            its key must be defined
                                           type: boolean
                                       required:
                                       - key
@@ -1176,3 +1189,5 @@ spec:
         type: object
     served: true
     storage: true
+
+{{- end }}
