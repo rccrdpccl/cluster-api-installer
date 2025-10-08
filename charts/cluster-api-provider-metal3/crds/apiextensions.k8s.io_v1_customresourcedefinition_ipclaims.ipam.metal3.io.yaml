@@ -1,6 +1,3 @@
-# Resource: apiextensions.k8s.io_v1_customresourcedefinition_ipclaims.ipam.metal3.io
----
-{{- if .Values.global.deployOnOCP }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -159,5 +156,3 @@ spec:
     storage: true
     subresources:
       status: {}
-
-{{- end }}

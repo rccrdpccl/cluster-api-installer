@@ -1,6 +1,10 @@
-manager:
+bootstrap:
   image:
     tag: 2.10
-    url: registry.redhat.io/openshift4/ose-baremetal-cluster-api-controllers-rhel9
+    url: quay.io/edge-infrastructure/cluster-api-bootstrap-provider-openshift-assisted
+controlplane:
+  image:
+    tag: 2.10
+    url: quay.io/edge-infrastructure/cluster-api-controlplane-provider-openshift-assisted
 global:
   deployOnOCP: true
