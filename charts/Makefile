@@ -6,10 +6,11 @@ DEFAULT_BRANCH ?= release-4.21
 CAPA_BRANCH ?= backplane-2.11
 CAPZ_BRANCH ?= backplane-2.11
 DEFAULT_ORGREPO ?= https://github.com/openshift
+METAL3_ORGREPO ?= https://github.com/honza
 STOLOSTRON_ORGREPO ?= https://github.com/stolostron
 # needs overridable branch, as the non-master branch will differ
 OPENSHIFT_ASSISTED_BRANCH ?= backplane-2.11
-METAL3_BRANCH ?= release-4.21
+METAL3_BRANCH ?= merge-upstream-2026-02-11
 
 OPENSHIFT_ASSISTED_ORGREPO ?= https://github.com/openshift-assisted
 
@@ -102,7 +103,7 @@ build-cluster-api-provider-metal3-chart:
 	$(eval TAG=$(call get-tag-from-branch, $(METAL3_BRANCH)))
 	@echo "Building cluster-api-provider-metal3 chart"
 	WKDIR="$(WKDIR)" \
-	ORGREPO="$(DEFAULT_ORGREPO)" \
+	ORGREPO="$(METAL3_ORGREPO)" \
 	PROJECT="cluster-api-provider-metal3" \
 	BRANCH="$(METAL3_BRANCH)" \
 	../scripts/build.sh

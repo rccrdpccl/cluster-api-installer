@@ -1,12 +1,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    prometheus.io/path: /metrics
+    prometheus.io/port: ${CAPM3_DIAGNOSTICS_ADDRESS:=:8443}
+    prometheus.io/scrape: "true"
   labels:
     cluster.x-k8s.io/provider: infrastructure-metal3
     control-plane: controller-manager
     controller-tools.k8s.io: "1.0"
-  name: capm3-controller-manager
-  namespace: '{{ .Release.Namespace }}'
+  name: mce-capm3-controller-manager
+  namespace: multicluster-engine
 spec:
   selector:
     matchLabels:
@@ -29,14 +33,9 @@ spec:
         - --tls-min-version=VersionTLS13
         command:
         - /manager
-        env:
-        - name: POD_NAMESPACE
-          valueFrom:
-            fieldRef:
-              fieldPath: metadata.namespace
         envFrom:
         - configMapRef:
-            name: capm3-capm3fasttrack-configmap
+            name: mce-capm3-capm3fasttrack-configmap
         image: '{{ .Values.manager.image.url }}:{{ .Values.manager.image.tag }}'
         imagePullPolicy: IfNotPresent
         livenessProbe:
@@ -77,7 +76,7 @@ spec:
         runAsUser: 65532
         seccompProfile:
           type: RuntimeDefault
-      serviceAccountName: capm3-manager
+      serviceAccountName: mce-capm3-manager
       terminationGracePeriodSeconds: 10
       tolerations:
       - effect: NoSchedule
