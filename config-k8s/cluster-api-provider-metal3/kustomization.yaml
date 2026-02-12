@@ -9,6 +9,18 @@ resources:
 
 ## Patch the default resources with OCP downstream requirements.
 patches:
+  # Default storage version to v1beta1
+  - target:
+      version: v1
+      kind: CustomResourceDefinition
+      name: (metal3clusters|metal3clustertemplates|metal3dataclaims|metal3datas|metal3datatemplates|metal3machines|metal3machinetemplates|metal3remediations|metal3remediationtemplates).infrastructure.cluster.x-k8s.io
+    patch: |-
+      - op: replace
+        path: /spec/versions/0/storage
+        value: true
+      - op: replace
+        path: /spec/versions/1/storage
+        value: false
   - target:
       kind: Namespace
     patch: |-
